@@ -1,5 +1,16 @@
 {
-    "leaderboard": [
-        
-    ]
+  "leaderboard": [
+    {
+      "username": "asd21",
+      "points": 8010
+    },
+    {
+      "username": "asd11",
+      "points": 420
+    },
+    {
+      "username": "asd31",
+      "points": 210
+    }
+  ]
 }
