@@ -11,13 +11,7 @@ let response = require('./src/response')
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 
-
-let users = require('./database/users').users
-console.log(users)
-
-
-let leaderboard = require('./database/leaderboard').leaderboard
-console.log(leaderboard)
+let {users, leaderboard} = require('./database')
 
 
 app.post('/api/login', function (req, res) {
@@ -37,7 +31,6 @@ app.post('/api/login', function (req, res) {
 
 
 app.post('/api/register', function (req, res) {
-
    console.log("register post req: ", req.body);
 
    if(users.find(user => user.username === req.body.username)){
@@ -56,15 +49,13 @@ app.post('/api/register', function (req, res) {
 })
 
 app.get('/api/leaderboard', function (req, res) {
-   console.log("leaderboard get req: " , req.body);
+   console.log("leaderboard get req");
    res.send(leaderboard)
 })
 
 
 app.post('/api/leaderboard', function (req, res) {
-
    console.log("leaderboard post req: " , req.body);
-   
 
    if(!leaderboard.find(user => user.username === req.body.username)){
       leaderboard.push({username: req.body.username, points: 0})
@@ -86,12 +77,10 @@ app.post('/api/leaderboard', function (req, res) {
    res.send(response.SUCCESS)
 })
 
- app.get('/test', function (req, res) {
-   res.send('Hello World');
- })
 
- app.get('/users', function (req, res) {
-   res.send(users);
+app.post('/api/multiplayer', function (req, res) {
+
+   res.send({username: "asdaq", ip: "192.168.1.103:8080"})
 })
 
 var server = app.listen(80, function () {

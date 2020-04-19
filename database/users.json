@@ -1,52 +1,10 @@
-{
-  "users": [
+[
     {
       "username": "asdaq",
       "password": "asdaq"
     },
     {
-      "username": "erw",
-      "password": "erw"
-    },
-    {
-      "username": "asfasfd",
-      "password": "sadfsafd"
-    },
-    {
-      "username": "asfasfd2",
-      "password": "sadfsafd"
-    },
-    {
       "username": "asd",
       "password": "asd"
-    },
-    {
-      "username": "",
-      "password": ""
-    },
-    {
-      "username": "sadadas",
-      "password": "dfasfasfd"
-    },
-    {
-      "username": "sadadasd",
-      "password": "d"
-    },
-    {
-      "username": "sadadasds",
-      "password": "d"
-    },
-    {
-      "username": "asdf",
-      "password": "asdf"
-    },
-    {
-      "username": "fasfd",
-      "password": "asdfasfd"
-    },
-    {
-      "username": "henlo",
-      "password": "henlo"
     }
-  ]
-}
+]

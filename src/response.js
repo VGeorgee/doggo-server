@@ -6,5 +6,4 @@ const FAIL = {message: 'FAIL'}
 module.exports = {
     SUCCESS,
     FAIL
-    
 }

@@ -1,16 +1,14 @@
-{
-  "leaderboard": [
-    {
-      "username": "asd21",
-      "points": 8010
-    },
-    {
-      "username": "asd11",
-      "points": 420
-    },
-    {
-      "username": "asd31",
-      "points": 210
-    }
-  ]
-}
+[
+  {
+    "username": "AI",
+    "points": 12200
+  },
+  {
+    "username": "UNINITIALIZED",
+    "points": 9050
+  },
+  {
+    "username": "asd",
+    "points": 700
+  }
+]
