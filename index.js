@@ -1,7 +1,3 @@
-//let app = require('./src/app')
-
-let fs = require('fs')
-
 var express = require('express')
 var bodyParser = require('body-parser')
 var app = express();
@@ -11,7 +7,7 @@ let response = require('./src/response')
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 
-let {users, leaderboard} = require('./database')
+let {users, leaderboard, updateUsers, updateLeaderboard} = require('./database')
 
 
 app.post('/api/login', function (req, res) {
@@ -33,17 +29,18 @@ app.post('/api/login', function (req, res) {
 app.post('/api/register', function (req, res) {
    console.log("register post req: ", req.body);
 
+   if(req.body.password.length < 3 || req.body.username.length < 3){
+      res.send(response.FAIL);
+   }
+   
    if(users.find(user => user.username === req.body.username)){
       res.send(response.FAIL);
       return 
    }
+
    users.push({ username : req.body.username, password: req.body.password })
-   fs.writeFile('./database/users.json', JSON.stringify({'users': users}, null, 2), err => {
-        if (err) {
-          console.error(err)
-          return
-        }
-   })
+
+   updateUsers();
 
    res.send(response.SUCCESS);
 })
@@ -52,7 +49,6 @@ app.get('/api/leaderboard', function (req, res) {
    console.log("leaderboard get req");
    res.send(leaderboard)
 })
-
 
 app.post('/api/leaderboard', function (req, res) {
    console.log("leaderboard post req: " , req.body);
@@ -63,17 +59,8 @@ app.post('/api/leaderboard', function (req, res) {
 
    leaderboard.find(user => user.username === req.body.username).points += req.body.points
 
-   leaderboard.sort((usera, userb) => {
-      return userb.points - usera.points
-   })
-
-   fs.writeFile('./database/leaderboard.json', JSON.stringify({'leaderboard': leaderboard}, null, 2), err => {
-      if (err) {
-        console.error(err)
-        return
-      }
-   })
-
+   updateLeaderboard()
+   
    res.send(response.SUCCESS)
 })
 
