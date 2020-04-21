@@ -5,7 +5,7 @@ let users = require('./users')
 console.log(users)
 
 let updateUsers = function () {
-    fs.writeFile('./users.json', JSON.stringify(users, null, 2), err => {
+    fs.writeFile('./database/users.json', JSON.stringify(users, null, 2), err => {
         if (err) {
           console.error(err)
           return
@@ -23,7 +23,7 @@ let updateLeaderboard = function () {
         return userb.points - usera.points
      })
      
-    fs.writeFile('./leaderboard.json', JSON.stringify(leaderboard, null, 2), err => {
+    fs.writeFile('./database/leaderboard.json', JSON.stringify(leaderboard, null, 2), err => {
         if (err) {
           console.error(err)
           return

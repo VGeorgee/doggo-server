@@ -7,7 +7,7 @@ let response = require('./src/response')
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 
-let {users, leaderboard, updateUsers, updateLeaderboard} = require('./database')
+let db = require('./database')
 
 
 app.post('/api/login', function (req, res) {
@@ -18,7 +18,7 @@ app.post('/api/login', function (req, res) {
       return res.send(response.FAIL)
    }
 
-   if(users.find(user => user.username === req.body.username && user.password === req.body.password)){
+   if(db.users.find(user => user.username === req.body.username && user.password === req.body.password)){
       return res.send(response.SUCCESS);
    }
    res.send(response.FAIL);
@@ -33,33 +33,33 @@ app.post('/api/register', function (req, res) {
       res.send(response.FAIL);
    }
    
-   if(users.find(user => user.username === req.body.username)){
+   if(db.users.find(user => user.username === req.body.username)){
       res.send(response.FAIL);
       return 
    }
 
-   users.push({ username : req.body.username, password: req.body.password })
+   db.users.push({ username : req.body.username, password: req.body.password })
 
-   updateUsers();
+   db.updateUsers();
 
    res.send(response.SUCCESS);
 })
 
 app.get('/api/leaderboard', function (req, res) {
    console.log("leaderboard get req");
-   res.send(leaderboard)
+   res.send(db.leaderboard)
 })
 
 app.post('/api/leaderboard', function (req, res) {
    console.log("leaderboard post req: " , req.body);
 
-   if(!leaderboard.find(user => user.username === req.body.username)){
-      leaderboard.push({username: req.body.username, points: 0})
+   if(!db.leaderboard.find(user => user.username === req.body.username)){
+      db.leaderboard.push({username: req.body.username, points: 0})
    }
 
-   leaderboard.find(user => user.username === req.body.username).points += req.body.points
+   db.leaderboard.find(user => user.username === req.body.username).points += req.body.points
 
-   updateLeaderboard()
+   db.updateLeaderboard()
    
    res.send(response.SUCCESS)
 })

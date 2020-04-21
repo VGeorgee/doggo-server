@@ -1,14 +1,18 @@
 [
-    {
-      "username": "AI",
-      "points": 15200
-    },
-    {
-      "username": "UNINITIALIZED",
-      "points": 9050
-    },
-    {
-      "username": "asd",
-      "points": 2800
-    }
-  ]
+  {
+    "username": "AI",
+    "points": 15200
+  },
+  {
+    "username": "UNINITIALIZED",
+    "points": 9050
+  },
+  {
+    "username": "asd",
+    "points": 2800
+  },
+  {
+    "username": "asd221",
+    "points": 130
+  }
+]
